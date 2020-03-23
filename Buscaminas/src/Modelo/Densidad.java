@@ -2,15 +2,15 @@ package Modelo;
 
 public enum Densidad {
 
-	Dificil("20"), Facil("10");
+	dificil(20), facil(10);
 	
-	private String mensaje;
+	private int mensaje;
 
-	public String getMensaje() {
+	public int getMensaje() {
 		return mensaje;
 	}
 
-	public void setMensaje(String mensaje) {
+	public void setMensaje(int mensaje) {
 		this.mensaje = mensaje;
 	}
 	

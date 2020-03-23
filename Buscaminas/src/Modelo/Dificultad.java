@@ -2,15 +2,15 @@ package Modelo;
 
 public enum Dificultad {
 
-	facil("5"), medio("8"), dificil("12");
+	pequeno(5), medio(8), grande(12);
 	
-	private String mensaje;
+	private int mensaje;
 
-	public String getMensaje() {
+	public int getMensaje() {
 		return mensaje;
 	}
 
-	public void setMensaje(String mensaje) {
+	public void setMensaje(int mensaje) {
 		this.mensaje = mensaje;
 	}
 	
