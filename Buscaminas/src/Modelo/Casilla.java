@@ -1,18 +1,18 @@
 package Modelo;
 
-public class Casilla extends Coordenada {
+public class Casilla {
 
 	private boolean velada = false;
 	private boolean bomba = false;
 	private boolean marcada = false;
+	                             
 	
-	public Casilla(int x, int y, boolean velada, boolean bomba, boolean marcada) {
-		super(x, y);
+	public void setVelada(boolean velada) {
 		this.velada = velada;
-		this.bomba = bomba;
-		this.marcada = marcada;
 	}
-	
+	public void setBomba(boolean bomba) {
+		this.bomba = bomba;
+	}
 	public boolean isMarcada() {
 		return marcada;
 	}

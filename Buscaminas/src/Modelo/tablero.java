@@ -20,6 +20,15 @@ public class tablero {
 	public Casilla[][] getTablero() {
 		return tablero;
 	}
+	public void setNumeroBombas(int numeroBombas) {
+		this.numeroBombas = numeroBombas;
+	}
+	public void setDimension(int dimension) {
+		this.dimension = dimension;
+	}
+	public void setTablero(Casilla[][] tablero) {
+		this.tablero = tablero;
+	}
 	
 	
 	
