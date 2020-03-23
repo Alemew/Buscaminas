@@ -5,7 +5,17 @@ public class Casilla {
 	private boolean velada = false;
 	private boolean bomba = false;
 	private boolean marcada = false;
-	                             
+	              
+	
+	
+	public void marcar() {
+		if (marcada==false) {
+			marcada = true;
+		}else {
+			marcada = false;
+		}
+		
+	}
 	
 	public void setVelada(boolean velada) {
 		this.velada = velada;
@@ -25,7 +35,5 @@ public class Casilla {
 	public boolean isBomba() {
 		return bomba;
 	}
-	
-	
-	
+
 }

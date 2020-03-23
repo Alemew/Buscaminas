@@ -1,11 +1,11 @@
 package Modelo;
 
-public class tablero {
+public class Tablero {
 
 	private int numeroBombas;
 	private int dimension;
 	private Casilla[][] tablero;
-	public tablero(Dificultad dificultad, Densidad densidad, Casilla[][] tablero) {
+	public Tablero(Dificultad dificultad, Densidad densidad, Casilla[][] tablero) {
 		super();
 		this.numeroBombas = (dimension * dimension) * Integer.valueOf(densidad.getMensaje())/100;
 		this.dimension = Integer.valueOf(dificultad.getMensaje());
@@ -30,7 +30,9 @@ public class tablero {
 		this.tablero = tablero;
 	}
 	
-	
+	public void casillaMarcada(Coordenada coordenada) {
+		this.tablero[coordenada.getX()][coordenada.getY()].marcar();;
+	}
 	
 	
 	
