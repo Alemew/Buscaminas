@@ -13,6 +13,6 @@ public class DesmarcarCasillaController {
 	}
 	
 	public void desmarcarCasilla(Coordenada cooordenadaMarcada) {
-		tablero.casillaMarcada(cooordenadaMarcada);
+		tablero.desmarcarCasilla(cooordenadaMarcada);
 	}
 }

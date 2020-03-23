@@ -45,6 +45,10 @@ public class Tablero {
 		this.tablero[coordenada.getX()][coordenada.getY()].marcar();;
 	}
 	
+	public void desmarcarCasilla(Coordenada coordenada) {
+		casillaMarcada(coordenada);
+
+	}
 	
 	
 	

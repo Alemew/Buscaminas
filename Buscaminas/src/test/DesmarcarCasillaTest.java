@@ -25,7 +25,8 @@ public class DesmarcarCasillaTest {
 		DesmarcarCasillaController test = new DesmarcarCasillaController(pruebaTablero);
 		
 		Coordenada prueba1 = new Coordenada(2, 4);
-		
+		prueba.marcar();
+		test.desmarcarCasilla(prueba1);
 		
 		
 		assertEquals(prueba.isMarcada(), pruebaTablero.getTablero()[2][4].isMarcada());
