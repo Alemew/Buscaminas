@@ -2,29 +2,40 @@ package Modelo;
 
 public class Tablero {
 
-	private int numeroBombas;
-	private int dimension;
 	private Casilla[][] tablero;
-	public Tablero(Dificultad dificultad, Densidad densidad, Casilla[][] tablero) {
+	
+	public Tablero(int dimension, int numeroBombas) {
 		super();
-		this.numeroBombas = (dimension * dimension) * Integer.valueOf(densidad.getMensaje())/100;
-		this.dimension = Integer.valueOf(dificultad.getMensaje());
-		this.tablero = new Casilla[dimension][dimension];
+		
+		generarTablero(dimension);
+		colocarBombas(dimension, numeroBombas);
+		
 	}
-	public int getNumeroBombas() {
-		return numeroBombas;
+	
+	private void generarTablero(int dimension) {
+		tablero = new Casilla[dimension][dimension];
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero.length; j++) {
+				tablero[i][j] = new Casilla();
+			}
+		}
 	}
-	public int getDimension() {
-		return dimension;
+	
+	private void colocarBombas(int dimension, int numeroBombas) {
+		for (int i = 0; i < numeroBombas; i++) {
+			int aleatorioX = (int) (Math.random() * dimension);
+			int aleatorioY = (int) (Math.random() * dimension);
+			if (tablero[aleatorioX][aleatorioY].isBomba()) {
+				i--;
+			}else {
+				tablero[aleatorioX][aleatorioY].setBomba(true);
+			}
+		}
+
 	}
+	
 	public Casilla[][] getTablero() {
 		return tablero;
-	}
-	public void setNumeroBombas(int numeroBombas) {
-		this.numeroBombas = numeroBombas;
-	}
-	public void setDimension(int dimension) {
-		this.dimension = dimension;
 	}
 	public void setTablero(Casilla[][] tablero) {
 		this.tablero = tablero;

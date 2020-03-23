@@ -3,11 +3,11 @@ package Control;
 import Modelo.Coordenada;
 import Modelo.Tablero;
 
-public class DesmarcarCasillaControler {
+public class DesmarcarCasillaController {
 
 	private Tablero tablero;
 
-	public DesmarcarCasillaControler(Tablero tablero) {
+	public DesmarcarCasillaController(Tablero tablero) {
 		super();
 		this.tablero = tablero;
 	}
