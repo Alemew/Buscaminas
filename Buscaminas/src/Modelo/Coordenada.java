@@ -23,7 +23,25 @@ public class Coordenada {
 		this.y = y;
 	}
 	
+	public boolean isContigua(Coordenada coordenadaActual) {
+		int x = Math.abs(this.getX() - coordenadaActual.getX());
+		int y = Math.abs(this.getY() - coordenadaActual.getY());
+		int distancia = 1;
+		return x == distancia || y == distancia;
+	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		boolean retorno=false;
+		if(obj!=null) {
+			retorno=this==obj;
+			if(!retorno && obj instanceof Coordenada) {
+				Coordenada coordenada=(Coordenada)obj;
+				retorno=this.getX()==coordenada.getX()&&this.getY()==coordenada.getY();
+			}
+		}
+		return retorno;
+	}
 	
 	
 }

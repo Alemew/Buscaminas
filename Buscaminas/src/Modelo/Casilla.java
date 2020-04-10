@@ -3,17 +3,19 @@ package Modelo;
 public class Casilla {
 
 	private boolean velada = false;
-	private boolean bomba = false;
+	private boolean mina = false;
 	private boolean marcada = false;
+	private int minasAlrededor=0;
 	              
 	
 	
-	public void marcar() {
+	public boolean marcar() {
 		if (marcada==false) {
 			marcada = true;
 		}else {
 			marcada = false;
 		}
+		return marcada;
 		
 	}
 	
@@ -21,7 +23,7 @@ public class Casilla {
 		this.velada = velada;
 	}
 	public void setBomba(boolean bomba) {
-		this.bomba = bomba;
+		this.mina = bomba;
 	}
 	public boolean isMarcada() {
 		return marcada;
@@ -33,7 +35,19 @@ public class Casilla {
 		return velada;
 	}
 	public boolean isBomba() {
-		return bomba;
+		return mina;
+	}
+	
+	public int getMinasAlrededor() {
+		return minasAlrededor;
+	}
+	public void setMinasAlrededor(int minasAlrededor) {
+		this.minasAlrededor = minasAlrededor;
+	}
+	
+	@Override
+	public String toString() {
+		return String.valueOf(mina);
 	}
 
 }

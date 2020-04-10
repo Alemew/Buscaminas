@@ -1,20 +1,15 @@
 package Modelo;
 
 public enum Densidad {
+	facil(10),dificil(20);
+	private int porcentaje;
 
-	dificil(20), facil(10);
-	
-	private int mensaje;
-
-	public int getMensaje() {
-		return mensaje;
+	private Densidad(int porcentaje) {
+		this.porcentaje = porcentaje;
 	}
 
-	public void setMensaje(int mensaje) {
-		this.mensaje = mensaje;
+	public int getPorcentaje() {
+		return porcentaje;
 	}
-	
-	
-	
 	
 }
