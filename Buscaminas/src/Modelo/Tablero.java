@@ -91,12 +91,12 @@ public class Tablero {
 		boolean bombasOcultas = true;
 		if (!casillas[iniX][iniY].isMarcada()) {
 
-			bombasOcultas = desvelaCasillaUnica(actual);
 			if (casillas[iniX][iniY].getMinasAlrededor() != 0) {
+				bombasOcultas = desvelaCasillaUnica(actual);
 				} 
-//			if (casillas[iniX][iniY].getMinasAlrededor() == 0) {
-//				desvelarVaciasyProximasRecursivo(iniX, iniY);
-//			}
+			if (casillas[iniX][iniY].getMinasAlrededor() == 0) {
+				desvelarVaciasyProximasRecursivo(iniX, iniY);
+			}
 		} else {
 			if (contarMarcadasAlrededor(actual, casillas.length) >= casillas[iniX][iniY].getMinasAlrededor()) {
 				bombasOcultas = desvelarCasillasContiguas(actual);

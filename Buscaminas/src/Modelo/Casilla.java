@@ -2,7 +2,7 @@ package Modelo;
 
 public class Casilla {
 
-	private boolean velada = false;
+	private boolean velada = true;
 	private boolean mina = false;
 	private boolean marcada = false;
 	private int minasAlrededor=0;
