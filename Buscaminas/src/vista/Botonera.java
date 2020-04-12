@@ -29,7 +29,7 @@ public class Botonera extends JPanel {
 				if (desveladorController.desvelarCasilla(boton.getName())) {
 					if (desveladorController.comprobarFin()) {
 						// TODO Informamos de la victoria
-//						desactivarBotones(desveladorController.getEntornoGrafico());
+					desactivarBotones(desveladorController.getEntornoGrafico());
 					}
 				} else {
 					// TODO informamos de perder

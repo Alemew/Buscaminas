@@ -35,7 +35,7 @@ public class Tablero {
 				i--;
 			}else {
 				casillas[aleatorioX][aleatorioY].setBomba(true);
-//				casillas[aleatorioX][aleatorioY].setMinasAlrededor( 10);
+				casillas[aleatorioX][aleatorioY].setMinasAlrededor(10);
 				
 			}
 		}
