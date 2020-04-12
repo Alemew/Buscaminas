@@ -7,7 +7,9 @@ public class Casilla {
 	private boolean marcada = false;
 	private int minasAlrededor=0;
 	              
-	
+	public Casilla() {
+		super();
+	}
 	
 	public boolean marcar() {
 		if (marcada==false) {
@@ -45,9 +47,9 @@ public class Casilla {
 		this.minasAlrededor = minasAlrededor;
 	}
 	
-	@Override
-	public String toString() {
-		return String.valueOf(mina);
-	}
+//	@Override
+//	public String toString() {
+//		return String.valueOf(mina);
+//	}
 
 }

@@ -28,7 +28,6 @@ public class DesveladorController {
 		// hace que estemos ante un adapter
 		// porque adecua API´s
 		Coordenada obtenCoordenada = Botonera.obtenCoordenada(name);
-		  tablero.desvelarCasilla(obtenCoordenada);
 		return tablero.desvelaCasillas(obtenCoordenada);
 	}
 	

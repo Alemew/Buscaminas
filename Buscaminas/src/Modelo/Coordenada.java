@@ -32,16 +32,33 @@ public class Coordenada {
 	
 	@Override
 	public boolean equals(Object obj) {
-		boolean retorno=false;
-		if(obj!=null) {
-			retorno=this==obj;
-			if(!retorno && obj instanceof Coordenada) {
-				Coordenada coordenada=(Coordenada)obj;
-				retorno=this.getX()==coordenada.getX()&&this.getY()==coordenada.getY();
-			}
-		}
-		return retorno;
+
+		if (this == obj)
+			return true;
+
+		if (obj == null)
+			return false;
+
+		if (!(obj instanceof Coordenada))
+			return false;
+
+		Coordenada coordenada = (Coordenada) obj;
+		return this.getX() == coordenada.getX() && this.getY() == coordenada.getY();
 	}
+	
+	
+//	@Override
+//	public boolean equals(Object obj) {
+//		boolean retorno=false;
+//		if(obj!=null) {
+//			retorno=this==obj;
+//			if(!retorno && obj instanceof Coordenada) {
+//				Coordenada coordenada=(Coordenada)obj;
+//				retorno=this.getX()==coordenada.getX()&&this.getY()==coordenada.getY();
+//			}
+//		}
+//		return retorno;
+//	}
 	
 	
 }

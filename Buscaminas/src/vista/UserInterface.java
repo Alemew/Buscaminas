@@ -18,6 +18,13 @@ import javax.swing.border.EmptyBorder;
 
 import Modelo.Densidad;
 import Modelo.Dificultad;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
+import java.awt.Dimension;
 
 public class UserInterface extends JFrame {
 
@@ -40,7 +47,7 @@ public class UserInterface extends JFrame {
 	Dificultad dificultad = Dificultad.pequeno;
 	Densidad densidad = Densidad.facil;
 	private JPanel huecoBotonera;
-	private JMenuItem mntmNewMenuItem_2;
+	private JLabel WinLose;
 
 	/**
 	 * Create the frame.
@@ -48,7 +55,7 @@ public class UserInterface extends JFrame {
 	public UserInterface() {
 		setTitle("Busca Minas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 530, 300);
+		setBounds(100, 100, 1024, 721);
 		setLocationRelativeTo(null);
 
 		menuBar = new JMenuBar();
@@ -99,11 +106,6 @@ public class UserInterface extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
-		
-		mntmNewMenuItem_2 = new JMenuItem("disabled");
-		menuBar.add(mntmNewMenuItem_2);
-		
-		
 
 		lblSonido = new JLabel();
 		menuBar.add(lblSonido);
@@ -120,7 +122,10 @@ public class UserInterface extends JFrame {
 
 		panelInformativo = new JPanel();
 		panel.add(panelInformativo);
-
+		
+		WinLose = new JLabel("");
+		panelInformativo.add(WinLose);
+		WinLose.setSize(new Dimension(100, 100));
 
 		JLabel lblNMinas = new JLabel("Densidad");
 		panelInformativo.add(lblNMinas);
@@ -140,16 +145,21 @@ public class UserInterface extends JFrame {
 		panelInformativo.add(lblDificultad);
 
 		btnReiniciar = new JButton("Reiniciar");
-		
 
 		panelInformativo.add(btnReiniciar);
-		
+
 		huecoBotonera = new JPanel();
+		huecoBotonera.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		contentPane.add(huecoBotonera, BorderLayout.CENTER);
 		huecoBotonera.setLayout(new BoxLayout(huecoBotonera, BoxLayout.X_AXIS));
+
 		// Escribo la configuracion por defecto
 		actualizaDensidad(getDensidad());
 		actualizaDificultad(getDificultad());
+	}
+
+	public JLabel getWinLose() {
+		return WinLose;
 	}
 
 	public JPanel getHuecoBotonera() {

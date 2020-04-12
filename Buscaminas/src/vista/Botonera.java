@@ -19,6 +19,7 @@ public class Botonera extends JPanel {
 	private MarcadorController marcarCasilla;
 
 	private int lado;
+	
 	MouseAdapter miMouseAdapter = new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -28,7 +29,7 @@ public class Botonera extends JPanel {
 				if (desveladorController.desvelarCasilla(boton.getName())) {
 					if (desveladorController.comprobarFin()) {
 						// TODO Informamos de la victoria
-						desactivarBotones(desveladorController.getEntornoGrafico());
+//						desactivarBotones(desveladorController.getEntornoGrafico());
 					}
 				} else {
 					// TODO informamos de perder
@@ -43,13 +44,13 @@ public class Botonera extends JPanel {
 		}
 	};
 
-	public Botonera(int lado2, DesveladorController desvelador, MarcadorController marcarCasilla) {
+	public Botonera(int lado, DesveladorController desvelador, MarcadorController marcarCasilla) {
 		this.marcarCasilla = marcarCasilla;
 		this.desveladorController = desvelador;
-		this.lado = lado2;
-		setLayout(new GridLayout(lado2, lado2, 0, 0));
-		for (int filas = 0; filas < lado2; filas++) {
-			for (int columnas = 0; columnas < lado2; columnas++) {
+		this.lado = lado;
+		setLayout(new GridLayout(lado, lado, 0, 0));
+		for (int filas = 0; filas < lado; filas++) {
+			for (int columnas = 0; columnas < lado; columnas++) {
 				JButton boton = new JButton();
 				String nombre = Integer.toString(filas) + ":" + Integer.toString(columnas);
 				boton.setName(nombre);

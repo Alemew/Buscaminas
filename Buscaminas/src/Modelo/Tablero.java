@@ -4,25 +4,18 @@ public class Tablero {
 
 	private Casilla[][] casillas;
 	
-	public Tablero(int dimension, int numeroBombas) {
-		super();
-		
-		generarTablero(dimension);
-		colocarBombas(dimension, numeroBombas);
-		
-	}
 	public Tablero(Casilla[][] casillas) {
 		super();
 		this.casillas = casillas;
 	}
 	
-	public Casilla[][] getCasillas() {
-		return casillas;
-	}
-
-
-	public void setCasillas(Casilla[][] casillas) {
-		this.casillas = casillas;
+	public Tablero(int dimension, int numeroBombas) {
+		super();
+		
+		generarTablero(dimension);
+		colocarBombas(dimension, numeroBombas);
+		asignarBomAlr();
+		
 	}
 	
 	private void generarTablero(int dimension) {
@@ -42,23 +35,25 @@ public class Tablero {
 				i--;
 			}else {
 				casillas[aleatorioX][aleatorioY].setBomba(true);
+//				casillas[aleatorioX][aleatorioY].setMinasAlrededor( 10);
+				
 			}
 		}
 
 	}
 	
-	private void asignarBA() {
+	private void asignarBomAlr() {
 		for (int i = 0; i < casillas.length; i++) {
 			for (int j = 0; j < casillas.length; j++) {
 				if (!casillas[i][j].isBomba()) {
-					casillas[i][j].setMinasAlrededor(compruebaBA(new Coordenada(i, j)));
+					casillas[i][j].setMinasAlrededor(compruebaBomAlr(new Coordenada(i, j)));
 				}
 			}
 		}
 
 	}
 	
-	private int compruebaBA(Coordenada actual) {
+	private int compruebaBomAlr(Coordenada actual) {
 		int numeroBomAlr = 0;
 		for (int i = 0; i < casillas.length; i++) {
 			for (int j = 0; j < casillas.length; j++) {
@@ -86,40 +81,41 @@ public class Tablero {
 		return continua;
 	}
 	
-	public boolean desvelaCasillas(Coordenada inicial) {
-		int inicialX = inicial.getX();
-		int inicialY = inicial.getY();
+	public void marcarCasilla(Coordenada coord) {
+		this.casillas[coord.getX()][coord.getY()].marcar();
+	}
+	
+	public boolean desvelaCasillas(Coordenada actual) {
+		int iniX = actual.getX();
+		int iniY = actual.getY();
 		boolean bombasOcultas = true;
-		
-		if (!casillas[inicialX][inicialY].isMarcada()) {
+		if (!casillas[iniX][iniY].isMarcada()) {
 
-			if (casillas[inicialX][inicialY].isVelada() && casillas[inicialX][inicialY].getMinasAlrededor() != 0) {
-				bombasOcultas = desvelaCasillaUnica(inicial);
-
-			} else {
-
-				desvelarVaciasyProximasRecursivo(inicialX, inicialY);
-			}
+			bombasOcultas = desvelaCasillaUnica(actual);
+			if (casillas[iniX][iniY].getMinasAlrededor() != 0) {
+				} 
+//			if (casillas[iniX][iniY].getMinasAlrededor() == 0) {
+//				desvelarVaciasyProximasRecursivo(iniX, iniY);
+//			}
 		} else {
-			if (contarMarcadasAlrededor(inicial, casillas.length) >= casillas[inicialX][inicialY].getMinasAlrededor()) {
-				bombasOcultas = desvelarCasillasContiguas(inicial);
+			if (contarMarcadasAlrededor(actual, casillas.length) >= casillas[iniX][iniY].getMinasAlrededor()) {
+				bombasOcultas = desvelarCasillasContiguas(actual);
 			}
 		}
-
 		return bombasOcultas;
 	}
 
 	private boolean desvelarCasillasContiguas(Coordenada inicial) {
-		int inicialX = inicial.getX();
-		int inicialY = inicial.getY();
+		int iniX = inicial.getX();
+		int iniY = inicial.getY();
 		boolean bombasOcultas = true;
 
-		for (int i = inicialX - 1; i <= inicialX + 1; i++) {
-			for (int j = inicialY - 1; j <= inicialY + 1; j++) {
+		for (int i = iniX - 1; i <= iniX + 1; i++) {
+			for (int j = iniY - 1; j <= iniY + 1; j++) {
 				Coordenada alrededor = new Coordenada(i, j);
 				if (!alrededor.equals(inicial)) {
 					if (isDentroLimites(alrededor, casillas.length) && !casillas[i][j].isMarcada()) {
-						casillas[i][j].isVelada();
+						casillas[i][j].setVelada(false);
 						if (casillas[i][j].isBomba()) {
 							desvelaBombas();
 							bombasOcultas = false;
@@ -137,20 +133,20 @@ public class Tablero {
 			for (int j = inicialY - 1; j <= inicialY + 1; j++) {
 				Coordenada posibleContinua = new Coordenada(i, j);
 				if (isDentroLimites(posibleContinua, casillas.length) && casillas[i][j].isVelada()) {
-					casillas[inicialX][inicialY].isVelada();
+					casillas[inicialX][inicialY].setVelada(false);
 					desvelaCasillas(posibleContinua);
 				}
 			}
 		}
 	}
 
-	private boolean desvelaCasillaUnica(Coordenada inicial) {
-		int inicialX = inicial.getX();
-		int inicialY = inicial.getY();
+	private boolean desvelaCasillaUnica(Coordenada actual) {
+		int iniX = actual.getX();
+		int iniY = actual.getY();
 		boolean bombasOcultas = true;
 
-		casillas[inicialX][inicialY].isVelada();
-		if (casillas[inicialX][inicialY].isBomba()) {
+		casillas[iniX][iniY].setVelada(false);
+		if (casillas[iniX][iniY].isBomba()) {
 			desvelaBombas();
 			bombasOcultas = false;
 		}
@@ -162,14 +158,14 @@ public class Tablero {
 		for (int i = 0; i < casillas.length; i++) {
 			for (int j = 0; j < casillas.length; j++) {
 				if (casillas[i][j].isBomba() && !casillas[i][j].isMarcada()) {
-					casillas[i][j].isVelada();
+					casillas[i][j].setVelada(false);
 				}
 			}
 		}
 	}
 
-	private byte contarMarcadasAlrededor(Coordenada posicion, int lado) {
-		byte marcadasAlrededor = 0;
+	private int contarMarcadasAlrededor(Coordenada posicion, int lado) {
+		int marcadasAlrededor = 0;
 		int x = posicion.getX();
 		int y = posicion.getY();
 		for (int i = x - 1; i <= x + 1; i++) {
@@ -187,7 +183,7 @@ public class Tablero {
 
 	public boolean tableroWin(Tablero tablero) {
 		int desveladas = 0;
-		byte bombas = 0;
+		int bombas = 0;
 		int lado = getCasillas().length;
 		int total = lado * lado;
 		for (int i = 0; i < getCasillas().length; i++) {
@@ -207,18 +203,22 @@ public class Tablero {
 	}
 	
 	
-	public Casilla getCasilla(Coordenada posicion) {
-		return casillas[posicion.getX()][posicion.getY()];
-	}
+//	public Casilla getCasilla(Coordenada posicion) {
+//		return casillas[posicion.getX()][posicion.getY()];
+//	}
+//	
+//	public void desvelarCasilla(Coordenada coordenada) {
+//		 getCasilla(coordenada).setVelada(false);
+//	}
 	
-	public void desvelarCasilla(Coordenada coordenada) {
-		 getCasilla(coordenada).setVelada(false);
-	}
-	public boolean marcarCasilla(Coordenada coord) {
-		return getCasilla(coord).marcar();
-	}
 	private boolean isDentroLimites(Coordenada alrededor, int lado) {
 		return alrededor.getX() >= 0 && alrededor.getX() < lado && alrededor.getY() >= 0 && alrededor.getY() < lado;
 	}
+	
+	public Casilla[][] getCasillas() {
+		return casillas;
+	}
+
+//	casillas[iniX][iniY].isVelada() &&
 	
 }
